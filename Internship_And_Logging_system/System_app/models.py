@@ -81,4 +81,11 @@ EvaluationCriteria(models.Model):
   def _str_(self):
     return self.title
 
+class Evaluation(models.Model):
+  CRITERIA_CHOICES = (
+    ('punctuality', 'punctuality'),
+    ('quality of work', 'quality of Work'),
+    ('teamwork', 'teamwork'),
+    ('communication', 'communication'),
+
     
