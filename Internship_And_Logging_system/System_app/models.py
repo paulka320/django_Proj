@@ -12,5 +12,11 @@ class CustomUser(AbstractUser):
   phone = models.CharField()
   department = models.Charfield(max_length=50)
   registration_number = models.Charfield()
+  groups = models.ManyToManyField(
+    Group,
+    related_name = 'customuser_set',
+    blank=True,
+    help_text='
+
   
     
