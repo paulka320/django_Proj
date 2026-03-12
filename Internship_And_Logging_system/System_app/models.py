@@ -16,7 +16,10 @@ class CustomUser(AbstractUser):
     Group,
     related_name = 'customuser_set',
     blank=True,
-    help_text='
+    help_text='The groups this user belongs to.',
+    verbose_name = 'groups'
+  )
+
 
   
     
