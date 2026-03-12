@@ -33,6 +33,7 @@ class InternshipPlacement(models.Model):
   supervisor_name = models.CharField(max_length=20)
     supervisor_email = models.EmailField()
 start_date = models.DateField()
+ end_date = models.DateField()
 
 
 
