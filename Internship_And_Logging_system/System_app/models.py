@@ -72,4 +72,16 @@ class WeeklyLog(models.Model):
         return f"Week {self.week_number} - {self.student.username}"
 
 
+class
+EvaluationCriteria(models.Model):
+  title = 
+models.CharField(max_length=20)
+  description =
+models.TextField()
+  max_score = 
+models.IntegerField()
+
+  def_str_(self):
+    return self.title
+
     
