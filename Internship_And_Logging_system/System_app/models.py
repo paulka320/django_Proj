@@ -60,7 +60,16 @@ class InternshipPlacement(models.Model):
   def __str__(self):
       return self.company_name
 
-
+class WeeklyLog(models.Model):
+    student = models.ForeignKey(CustomUser,on_delete = models.CASCADE)
+    week_number = models.IntegerField()
+    activities = models.TextField()
+    challenges = models.TextField()
+    solutions = models.TextField()
+    date_submitted = models.DateField()
+    
+    def __str__(self):
+        return f"Week {self.week_number} - {self.student.username}"
 
 
     
