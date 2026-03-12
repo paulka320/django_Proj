@@ -34,6 +34,9 @@ class InternshipPlacement(models.Model):
     supervisor_email = models.EmailField()
 start_date = models.DateField()
  end_date = models.DateField()
+def __str__(self):
+        return self.company_name
+
 
 
 
