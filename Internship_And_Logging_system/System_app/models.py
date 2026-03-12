@@ -32,7 +32,7 @@ class CustomUser(AbstractUser):
     return self.username 
 
   
-class Evaluation(models.Model):
+  class Evaluation(models.Model):
     student = models.ForeignKey(CustomUser,on_delete = models.CASCADE)
     score = models.IntegerField()
     supervisor_comment = models.TextField(blank=True)
@@ -67,7 +67,6 @@ class EvaluationCriteria(models.Model):
   title = models.CharField(max_length=20)
   description =models.TextField()
   max_score = models.IntegerField()
-
   def _str_(self):
     return self.title
 
