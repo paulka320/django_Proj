@@ -28,4 +28,6 @@ class CustomUser(AbstractUser):
 
   
 class InternshipPlacement(models.Model):
+  student = models.OneToOneField(CustomUser,on_delete = models.CASCADE)
+
     
