@@ -30,6 +30,8 @@ class CustomUser(AbstractUser):
     return self.username
 
   
+
+  
   class Evaluation(models.Model):
     student = models.ForeignKey(CustomUser,on_delete = models.CASCADE)
     score = models.IntegerField()
