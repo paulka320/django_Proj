@@ -1,12 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser,Group,Permission
+from django.contrib.auth.models import AbstractUser, Group, Permission
 # Create your models here.
 class CustomUser(AbstractUser):
   ROLE_CHOICES = (
-    ('student','student'),
+    ('student', 'student'),
     ('academic_Supervisor','academic_Supervisor'),
-    ('supervisor','supervisor'),
-    ('adminstrator','adminstrator'),
+    ('supervisor', 'supervisor'),
+    ('administrator',' administrator'),
   )
   role = Models.CharField(max_length=20,choice=ROLE_CHOICES)
   phone = models.CharField()
@@ -21,5 +21,11 @@ class CustomUser(AbstractUser):
   )
 
 
+
+
+
+
+
   
+class InternshipPlacement(models.Model):
     
