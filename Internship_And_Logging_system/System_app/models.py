@@ -10,10 +10,10 @@ class CustomUser(AbstractUser):
     ('supervisor', 'supervisor'),
     ('administrator',' administrator'),
   )
-  role = Models.CharField(max_length=20,choice=ROLE_CHOICES)
+  role = models.CharField(max_length=20,choices=ROLE_CHOICES)
   phone = models.CharField()
-  department = models.Charfield(max_length=50)
-  registration_number = models.Charfield()
+  department = models.CharField(max_length=50)
+  registration_number = models.CharField()
   groups = models.ManyToManyField(
     Group,
     related_name = 'customuser_set',
@@ -29,12 +29,10 @@ class CustomUser(AbstractUser):
     verbose_name ='user permissions'
   )
   def __str__(self):
-    return self.username
+    return self.username 
 
   
-
-  
-  class Evaluation(models.Model):
+class Evaluation(models.Model):
     student = models.ForeignKey(CustomUser,on_delete = models.CASCADE)
     score = models.IntegerField()
     supervisor_comment = models.TextField(blank=True)
@@ -42,13 +40,6 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
       return f"{self.student.username}-{self.criteria.title}"
-
-
-
-
-
-
-
   
 class InternshipPlacement(models.Model):
   student = models.OneToOneField(CustomUser,on_delete = models.CASCADE)
@@ -72,20 +63,12 @@ class WeeklyLog(models.Model):
         return f"Week {self.week_number} - {self.student.username}"
 
 
-class
-EvaluationCriteria(models.Model):
+class EvaluationCriteria(models.Model):
   title = models.CharField(max_length=20)
   description =models.TextField()
   max_score = models.IntegerField()
 
   def _str_(self):
     return self.title
-
-class Evaluation(models.Model):
-  CRITERIA_CHOICES = (
-    ('punctuality', 'punctuality'),
-    ('quality of work', 'quality of Work'),
-    ('teamwork', 'teamwork'),
-    ('communication', 'communication'),
 
     
