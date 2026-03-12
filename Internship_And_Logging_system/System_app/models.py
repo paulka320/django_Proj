@@ -29,6 +29,16 @@ class CustomUser(AbstractUser):
   def __str__(self):
     return self.username
 
+  
+  class Evaluation(models.Model):
+    student = models.ForeignKey(CustomUser,on_delete = models.CASCADE)
+    score = models.IntegerField()
+    supervisor_comment = models.TextField(blank=True)
+    date_evaluated = models.DateField(auto_now_add =True)
+
+    def __str__(self):
+      return f"{self.student.username}-{self.criteria.title}"
+
 
 
 
@@ -40,11 +50,11 @@ class InternshipPlacement(models.Model):
   student = models.OneToOneField(CustomUser,on_delete = models.CASCADE)
   company_name = models.CharField(max_length=20)
   supervisor_name = models.CharField(max_length=20)
-    supervisor_email = models.EmailField()
-start_date = models.DateField()
- end_date = models.DateField()
-def __str__(self):
-        return self.company_name
+  supervisor_email = models.EmailField()
+  start_date = models.DateField()
+  end_date = models.DateField()
+  def __str__(self):
+      return self.company_name
 
 
 
