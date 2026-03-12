@@ -24,8 +24,10 @@ class CustomUser(AbstractUser):
     related_name ='customer_set',
     blank = True,
     help_text='Specific permission for this user.',
-    verbose_name ='user permissions'\
+    verbose_name ='user permissions'
   )
+  def __str__(self):
+    return self.username
 
 
 
