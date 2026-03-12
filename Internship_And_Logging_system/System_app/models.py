@@ -8,5 +8,9 @@ class CustomUser(AbstractUser):
     ('supervisor','supervisor'),
     ('adminstrator','adminstrator'),
   )
-  role = Models.CharField(max_length=20,
+  role = Models.CharField(max_length=20,choice=ROLE_CHOICES)
+  phone = models.CharField()
+  department = models.Charfield(max_length=50)
+  registration_number = models.Charfield()
+  
     
