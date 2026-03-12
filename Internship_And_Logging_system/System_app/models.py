@@ -29,5 +29,6 @@ class CustomUser(AbstractUser):
   
 class InternshipPlacement(models.Model):
   student = models.OneToOneField(CustomUser,on_delete = models.CASCADE)
+  company_name = models.CharField(max_length=20)
 
     
