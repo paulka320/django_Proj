@@ -33,6 +33,12 @@ class CustomUser(AbstractUser):
 
   
   class Evaluation(models.Model):
+     CRITERIA_CHOICES = (
+      ('punctuality', 'punctuality'),
+      ('quality of work', 'quality of Work'),
+      ('teamwork', 'teamwork'),
+      ('communication', 'communication'),
+     )
     student = models.ForeignKey(CustomUser,on_delete = models.CASCADE)
     score = models.IntegerField()
     supervisor_comment = models.TextField(blank=True)
