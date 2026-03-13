@@ -3,32 +3,33 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 # Create your models here.
 
 
-class CustomUser(AbstractUser):
-    
-    ROLE_CHOICES = (
-    
+class CustomUser(AbstractUser):    
+    ROLE_CHOICES = (    
     ('student', 'student'),
     ('academic_Supervisor','academic_Supervisor'),
     ('supervisor', 'supervisor'),
     ('administrator',' administrator'),
   )
+  
   role = models.CharField(max_length=20,choices=ROLE_CHOICES)
   phone = models.CharField()
   department = models.CharField(max_length=50)
   registration_number = models.CharField()
-  groups = models.ManyToManyField(
-    Group,
-    related_name = 'customuser_set',
-    blank=True,
-    help_text='The groups this user belongs to.',
-    verbose_name = 'groups'
+  groups = models.ManyToManyField(  
+  Group,
+  related_name = 'customuser_set',
+  blank=True,
+  help_text='The groups this user belongs to.',
+  verbose_name = 'groups'
   )
+  
   user_permissions = models.ManyToManyField(
-    Permission,
-    related_name ='customer_set',
-    blank = True,
-    help_text='Specific permission for this user.',
-    verbose_name ='user permissions'
+  
+  Permission,
+  related_name ='customer_set',
+  blank = True,
+  help_text='Specific permission for this user.',
+  verbose_name ='user permissions'
   )
   def __str__(self):
     return self.username 
