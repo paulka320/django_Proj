@@ -4,7 +4,9 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 
 
 class CustomUser(AbstractUser):
-  ROLE_CHOICES = (
+    
+    ROLE_CHOICES = (
+    
     ('student', 'student'),
     ('academic_Supervisor','academic_Supervisor'),
     ('supervisor', 'supervisor'),
@@ -32,7 +34,7 @@ class CustomUser(AbstractUser):
     return self.username 
 
   
-  class Evaluation(models.Model):
+class Evaluation(models.Model):
     student = models.ForeignKey(CustomUser,on_delete = models.CASCADE)
     score = models.IntegerField()
     supervisor_comment = models.TextField(blank=True)
@@ -48,6 +50,7 @@ class InternshipPlacement(models.Model):
   supervisor_email = models.EmailField()
   start_date = models.DateField()
   end_date = models.DateField()
+  
   def __str__(self):
       return self.company_name
 
@@ -67,6 +70,7 @@ class EvaluationCriteria(models.Model):
   title = models.CharField(max_length=20)
   description =models.TextField()
   max_score = models.IntegerField()
+  
   def _str_(self):
     return self.title
 
