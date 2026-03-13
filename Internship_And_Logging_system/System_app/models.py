@@ -11,17 +11,17 @@ class CustomUser(AbstractUser):
     ('administrator',' administrator'),
   )
   
-  role = models.CharField(max_length=20,choices=ROLE_CHOICES)
-  phone = models.CharField()
-  department = models.CharField(max_length=50)
-  registration_number = models.CharField()
-  groups = models.ManyToManyField(  
-  Group,
-  related_name = 'customuser_set',
-  blank=True,
-  help_text='The groups this user belongs to.',
-  verbose_name = 'groups'
-  )
+    role = models.CharField(max_length=20,choices=ROLE_CHOICES)
+    phone = models.CharField()
+    department = models.CharField(max_length=50)
+    registration_number = models.CharField()
+    groups = models.ManyToManyField(    
+    Group,
+    related_name = 'customuser_set',
+    blank=True,
+    help_text='The groups this user belongs to.',
+    verbose_name = 'groups'
+    )
   
   user_permissions = models.ManyToManyField(
   
