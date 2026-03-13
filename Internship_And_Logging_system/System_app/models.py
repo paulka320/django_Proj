@@ -31,8 +31,8 @@ class CustomUser(AbstractUser):
     help_text='Specific permission for this user.',
     verbose_name ='user permissions'
     )
-  def __str__(self):
-    return self.username 
+    def __str__(self):
+        return self.username 
 
 class Evaluation(models.Model):    
     CRITERIA_CHOICES = (    
