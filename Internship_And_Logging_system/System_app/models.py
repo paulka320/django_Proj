@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 # Create your models here.
 
 
-class CustomUser(AbstractUser):    
+class CustomUser(AbstractUser):   
     ROLE_CHOICES = (    
     ('student', 'student'),
     ('academic_Supervisor','academic_Supervisor'),
