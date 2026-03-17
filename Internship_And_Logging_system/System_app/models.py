@@ -61,12 +61,19 @@ class InternshipPlacement(models.Model):
     def __str__(self):
         return self.company_name
 
-class WeeklyLog(models.Model):    
+class WeeklyLog(models.Model): 
+    STATUS_CHOICES = (
+       ('draft','draft'),
+        ('submitted','submitted'),
+        ('approved','approved'),
+        ('reviewed','reviewed'),
+    )   
     student = models.ForeignKey(CustomUser,on_delete = models.CASCADE)
     week_number = models.IntegerField()
     activities = models.TextField()
     challenges = models.TextField()
     solutions = models.TextField()
+    status = models.CharField(max_length =20,choices=STATUS_CHOICES,default='draft')
     date_submitted = models.DateField()
     
     def __str__(self):
