@@ -47,4 +47,19 @@ class WeeklyLogSerializer(serializers.Serializer):
         instance.week_number = validated_data.get('week_number',instance.week_number)
         instance.activities = validated_data.get('activities',instance.activities)
         instance.challenges = validated_data.get('challenges',instance.challenges)
+
+class EvaluationSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only = True)
+    student = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all())
+    criteria = serializers.PrimaryKeyRelatedField(queryset=EvaluationCriteria.objects.all())
+    score = serializers.IntegerField()
+
+    def validated_score(self,value):
+        if value < 0 :
+            raise serializers.validationError("Score can not be negative")
+        return value
+    
+    def create(self,validated_data):
+        return Evaluation.objects.create(**validated_data)
+    
   
