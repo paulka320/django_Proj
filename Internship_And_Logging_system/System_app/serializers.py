@@ -19,14 +19,32 @@ class CustomUserSerializer(serializers.Serializer):
         return instance
     
 
-    class EvaluationCriteriaserializer(serializers.Serializer):
-        id = serializers.IntegerField(read_only = True)
-        name = serializers.CharField(max_length=50)
-        max_score = serializers.IntegerField()
+class EvaluationCriteriaSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only = True)
+    name = serializers.CharField(max_length=50)
+    max_score = serializers.IntegerField()
 
-        def create(self,validated_data):
-            return EvaluationCriteria.objects.create(**validated_data)
+    def create(self,validated_data):
+        return EvaluationCriteria.objects.create(**validated_data)
 
-        def update(self,instance,validated_data):
-            instance.name = validated_data.get('username',instance.username) 
-            instance.max_score = validated_data.get('max_score',instance.max_score)  
+    def update(self,instance,validated_data):
+        instance.name = validated_data.get('username',instance.username) 
+        instance.max_score = validated_data.get('max_score',instance.max_score)
+
+class WeeklyLogSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only = True)
+    student = serializers.PrimaryKeyRelatedField(queryset = CustomUser.objects.all())
+    week_number = serializers.IntegerField()
+    activities = serializers.CharField()
+    challenges = serializers.CharField()
+    supervisor_comment = serializers.CharField(required = True,blank =False)
+
+    def create(self,validated_data):
+        return WeeklyLog.objects.create(**validated_data)
+    
+    def update(self,instance,validated_data):
+        instance.student = validated_data.get('student',instance.student)
+        instance.week_number = validated_data.get('week_number',instance.week_number)
+        instance.activities = validated_data.get('activities',instance.activities)
+        instance.challenges = validated_data.get('challenges',instance.challenges)
+  
