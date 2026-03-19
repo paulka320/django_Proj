@@ -28,4 +28,5 @@ class CustomUserSerializer(serializers.Serializer):
             return EvaluationCriteria.objects.create(**validated_data)
 
         def update(self,instance,validated_data):
-            instance.name = validated_data.get('username',instance.username)   
+            instance.name = validated_data.get('username',instance.username) 
+            instance.max_score = validated_data.get('max_score',instance.max_score)  
