@@ -3,7 +3,9 @@ from .models import CustomUser,EvaluationCriteria,Evaluation,InternshipPlacement
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
-        
+    class Meta:
+        model = CustomUser
+        fields='__all__'    
 
 class EvaluationCriteriaSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only = True)
