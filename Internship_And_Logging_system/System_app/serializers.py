@@ -36,19 +36,16 @@ class WeeklyLogSerializer(serializers.Serializer):
         instance.activities = validated_data.get('activities',instance.activities)
         instance.challenges = validated_data.get('challenges',instance.challenges)
 
-class EvaluationSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only = True)
-    student = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all())
-    criteria = serializers.PrimaryKeyRelatedField(queryset=EvaluationCriteria.objects.all())
-    score = serializers.IntegerField()
+class EvaluationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Evaluation
+        fields = '__all__'
 
     def validated_score(self,value):
         if value < 0 :
             raise serializers.validationError("Score can not be negative")
         return value
     
-    def create(self,validated_data):
-        return Evaluation.objects.create(**validated_data)
     
 class InternshipPlacementSerializer(serializers.ModelSerializer):
     class Meta:
