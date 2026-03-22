@@ -66,4 +66,10 @@ class InternshipPlacementSerializer(serializers.Serializer):
     id =serializers.IntegerField(read_only=True)
     student = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all())
     supervisor = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all())
+    company_name=serializers.CharField(max_length=200)
+    start_date = serializers.DateField()
+    end_date = serializers.DateField()
+
+    def create(self,validated_data):
+        return InternshipPlacement.objects.create(**validated_data)
   
