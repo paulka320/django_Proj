@@ -20,22 +20,11 @@ class EvaluationCriteriaSerializer(serializers.Serializer):
         instance.max_score = validated_data.get('max_score',instance.max_score)
 
 class WeeklyLogSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only = True)
-    student = serializers.PrimaryKeyRelatedField(queryset = CustomUser.objects.all())
-    week_number = serializers.IntegerField()
-    activities = serializers.CharField(max_length=200,required=True,allow_blank=False)
-    challenges = serializers.CharField(max_length=200,required=True,allow_blank=False)
-    supervisor_comment = serializers.CharField(max_length=200,required = True,allow_blank =False)
+    class Meta:
+        model = WeeklyLog
+        field = '__all__'
 
-    def create(self,validated_data):
-        return WeeklyLog.objects.create(**validated_data)
-    
-    def update(self,instance,validated_data):
-        instance.student = validated_data.get('student',instance.student)
-        instance.week_number = validated_data.get('week_number',instance.week_number)
-        instance.activities = validated_data.get('activities',instance.activities)
-        instance.challenges = validated_data.get('challenges',instance.challenges)
-
+        
 class EvaluationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Evaluation
