@@ -35,8 +35,8 @@ class WeeklyLogSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only = True)
     student = serializers.PrimaryKeyRelatedField(queryset = CustomUser.objects.all())
     week_number = serializers.IntegerField()
-    activities = serializers.CharField()
-    challenges = serializers.CharField()
+    activities = serializers.CharField(max_length=200)
+    challenges = serializers.CharField(max_length=200)
     supervisor_comment = serializers.CharField(required = True,blank =False)
 
     def create(self,validated_data):
