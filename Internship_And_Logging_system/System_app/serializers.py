@@ -19,12 +19,12 @@ class EvaluationCriteriaSerializer(serializers.Serializer):
         instance.name = validated_data.get('username',instance.username) 
         instance.max_score = validated_data.get('max_score',instance.max_score)
 
-class WeeklyLogSerializer(serializers.Serializer):
+class WeeklyLogSerializer(serializers.ModelSerializer):
     class Meta:
         model = WeeklyLog
         field = '__all__'
 
-        
+
 class EvaluationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Evaluation
