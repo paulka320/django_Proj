@@ -62,4 +62,8 @@ class EvaluationSerializer(serializers.Serializer):
     def create(self,validated_data):
         return Evaluation.objects.create(**validated_data)
     
+class InternshipPlacementSerializer(serializers.Serializer):
+    id =serializers.IntegerField(read_only=True)
+    student = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all())
+    supervisor = serializers.PrimaryKeyRelatedField(queryset=CustomUser.objects.all())
   
