@@ -7,17 +7,10 @@ class CustomUserSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields='__all__'    
 
-class EvaluationCriteriaSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only = True)
-    name = serializers.CharField(max_length=50)
-    max_score = serializers.IntegerField()
-
-    def create(self,validated_data):
-        return EvaluationCriteria.objects.create(**validated_data)
-
-    def update(self,instance,validated_data):
-        instance.name = validated_data.get('username',instance.username) 
-        instance.max_score = validated_data.get('max_score',instance.max_score)
+class EvaluationCriteriaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EvaluationCriteria
+        fields = '__all__'
 
 class WeeklyLogSerializer(serializers.ModelSerializer):
     class Meta:
