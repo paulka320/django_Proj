@@ -43,6 +43,7 @@ class Evaluation(models.Model):
     )
     student = models.ForeignKey(CustomUser,on_delete = models.CASCADE)
     score = models.IntegerField()
+    criteria = models.CharField(max_length=20,choices=CRITERIA_CHOICES)
     supervisor_comment = models.TextField(blank=True)
     date_evaluated = models.DateField(auto_now_add =True)
 
