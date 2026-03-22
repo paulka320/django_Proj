@@ -71,5 +71,5 @@ class InternshipPlacementSerializer(serializers.Serializer):
     end_date = serializers.DateField()
 
     def create(self,validated_data):
-        return 
+        return InternshipPlacement.objects.create
   
