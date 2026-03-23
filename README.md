@@ -3,4 +3,5 @@ USER ROLES
 STUDENT ROLES:
 As a student,
 I submit my daily reports from my internship
-I submit my challenges also
+I submit my challenges 
+I also help my supervisor each out to me easily
