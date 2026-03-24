@@ -30,6 +30,6 @@ class EvaluationCriteriaViewSet(viewsets.ModelViewSet):
     serializer_class = EvaluationCriteriaSerializer
 
 
-class EvaluationViewSet(viewsets):
+class EvaluationViewSet(viewsets.ModelViewSet):
     queryset = Evaluation.objects.all()
     serializer_class = EvaluationSerializer
