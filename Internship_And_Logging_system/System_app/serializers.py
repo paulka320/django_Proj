@@ -15,7 +15,7 @@ class EvaluationCriteriaSerializer(serializers.ModelSerializer):
 class WeeklyLogSerializer(serializers.ModelSerializer):
     class Meta:
         model = WeeklyLog
-        field = '__all__'
+        fields = '__all__'
 
 
 class EvaluationSerializer(serializers.ModelSerializer):
@@ -30,3 +30,6 @@ class EvaluationSerializer(serializers.ModelSerializer):
     
     
 class InternshipPlacementSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = InternshipPlacement
+        fields = '__all__'
