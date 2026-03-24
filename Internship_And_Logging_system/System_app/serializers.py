@@ -30,6 +30,3 @@ class EvaluationSerializer(serializers.ModelSerializer):
     
     
 class InternshipPlacementSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = InternshipPlacement
-        fields ='__all__'
