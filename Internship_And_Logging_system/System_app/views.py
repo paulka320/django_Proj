@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from rest_framework import viewsets
 from .models import CustomUser, InternshipPlacement, WeeklyLog, EvaluationCriteria, Evaluation
-from .serializers import (CustomUserSerializer,
+from .serializers import (
     CustomUserSerializer,
     InternshipPlacementSerializer,
     WeeklyLogSerializer,
