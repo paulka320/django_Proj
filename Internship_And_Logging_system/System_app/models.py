@@ -86,7 +86,7 @@ class EvaluationCriteria(models.Model):
   description =models.TextField()
   max_score = models.IntegerField()
   
-  def _str_(self):
+  def __str__(self):
     return self.title
 
     
