@@ -12,9 +12,9 @@ class CustomUser(AbstractUser):
   )
   
     role = models.CharField(max_length=20,choices=ROLE_CHOICES)
-    phone = models.CharField()
+    phone = models.CharField(max_length=13)
     department = models.CharField(max_length=50)
-    registration_number = models.CharField()
+    registration_number = models.CharField(max_length=15)
     groups = models.ManyToManyField(    
     Group,
     related_name = 'customuser_set',
