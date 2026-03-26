@@ -48,7 +48,7 @@ class Evaluation(models.Model):
     date_evaluated = models.DateField(auto_now_add =True)
 
     def __str__(self):
-      return f"{self.student.username}-{self.criteria.title}"
+      return f"{self.student.username} - {self.criteria.title()}"
   
 class InternshipPlacement(models.Model):
     
