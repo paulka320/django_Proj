@@ -1,7 +1,45 @@
-USER ROLES
+# Internship Logging and Evaluation System
 
-STUDENT ROLES:
-As a student,
-I submit my daily reports from my internship
-I submit my challenges 
-I also help my supervisor reach out to me easily
+## Description
+This project is a Django-based Internship Logging and Evaluation System designed to manage student internships.
+
+The system supports:
+- internship placement management
+- weekly log submission
+- supervisor review
+- student evaluation
+- role-based access for different users
+
+## User Roles
+- Student
+- Supervisor
+- Academic Supervisor
+- Administrator
+
+## Main Modules
+- Custom user management
+- Internship placement
+- Weekly logbook
+- Evaluation and grading
+- Evaluation criteria
+
+## Technologies Used
+- Python
+- Django
+- SQLite
+
+## How to Run the Project
+1. Clone the repository
+2. Create and activate a virtual environment
+3. Install dependencies
+4. Run migrations
+5. Start the development server
+
+## Example Setup Commands
+```bash
+python -m venv venv
+venv\Scripts\activate
+pip install django
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
