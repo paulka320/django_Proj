@@ -34,6 +34,9 @@ class InternshipPlacementViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         if CustomUser.role =="student":
             return InternshipPlacement.objects.filter(students=CustomUser)
+        elif CustomUser.role =='admin':
+            return InternshipPlacement.objects.all()
+        elif CustomUser.role==''
 
 
 class WeeklyLogViewSet(viewsets.ModelViewSet):
