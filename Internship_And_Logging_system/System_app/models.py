@@ -11,12 +11,12 @@ class CustomUser(AbstractUser):
     ('administrator',' Administrator'),
   )
   
-  role = models.CharField(max_length=20,choices=ROLE_CHOICES)
-  phone = models.CharField(max_length=13)
-  department = models.CharField(max_length=50)
-  registration_number = models.CharField(max_length=15)
+    role = models.CharField(max_length=20,choices=ROLE_CHOICES)
+    phone = models.CharField(max_length=13)
+    department = models.CharField(max_length=50)
+    registration_number = models.CharField(max_length=15)
 
-  groups = models.ManyToManyField(
+    groups = models.ManyToManyField(
       Group,
       related_name = 'customuser_set',
       blank=True,
@@ -24,15 +24,15 @@ class CustomUser(AbstractUser):
       verbose_name = 'groups'
   )
   
-  user_permissions = models.ManyToManyField(
+    user_permissions = models.ManyToManyField(
       Permission,
       related_name ='customer_set',
       blank = True,
       help_text='Specific permission for this user.',
       verbose_name ='user permissions'
-  )
+    )
 
-  def __str__(self):
+    def __str__(self):
       return self.username 
 
 class Evaluation(models.Model):    
@@ -84,11 +84,12 @@ class WeeklyLog(models.Model):
 
 
 class EvaluationCriteria(models.Model):
-  title = models.CharField(max_length=30)
-  description = models.TextField()
-  max_score = models.IntegerField()
   
-  def __str__(self):
-      return self.title
+    title = models.CharField(max_length=30)
+    description = models.TextField()
+    max_score = models.IntegerField()
+  
+    def __str__(self):
+        return self.title
 
     
