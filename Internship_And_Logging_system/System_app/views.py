@@ -14,6 +14,10 @@ from .serializers import (
 class CustomUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
+    permission_classes = [isAuthenticated]
+    
+    def get_queryset(self):
+        if self.request.CustomUser
 
 
 class InternshipPlacementViewSet(viewsets.ModelViewSet):
