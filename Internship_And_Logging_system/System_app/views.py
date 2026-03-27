@@ -21,7 +21,7 @@ class CustomUserViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     
     def get_queryset(self):
-        if self.request.User.role =='admin':
+        if self.request.User.role =='Administrator':
             return CustomUser.objects.all()
         return CustomUser.objects.none()
 
@@ -32,11 +32,15 @@ class InternshipPlacementViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        if CustomUser.role =="student":
+        if CustomUser.role =="Student":
             return InternshipPlacement.objects.filter(students=CustomUser)
-        elif CustomUser.role =='admin':
+        elif CustomUser.role =='Adminstrator':
             return InternshipPlacement.objects.all()
-        elif CustomUser.role==''
+        elif CustomUser.role=='Supervisor':
+            return InternshipPlacement.objects.all()
+        elif CustomUser.role =='Academic_Supervisor':
+            return InternshipPlacement.objects.all()
+        return InternshipPlacement.objects.none()
 
 
 class WeeklyLogViewSet(viewsets.ModelViewSet):
