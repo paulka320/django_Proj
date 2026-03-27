@@ -29,6 +29,7 @@ class CustomUserViewSet(viewsets.ModelViewSet):
 class InternshipPlacementViewSet(viewsets.ModelViewSet):
     queryset = InternshipPlacement.objects.all()
     serializer_class = InternshipPlacementSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class WeeklyLogViewSet(viewsets.ModelViewSet):
