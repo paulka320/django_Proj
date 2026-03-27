@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.exceptions import PermissionDenied
 
 # Create your views here.
 from rest_framework import viewsets
@@ -14,7 +16,7 @@ from .serializers import (
 class CustomUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
-    permission_classes = [isAuthenticated]
+    permission_classes = [IsAuthenticated]
     
     def get_queryset(self):
         if self.request.CustomUser
