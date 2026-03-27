@@ -21,7 +21,7 @@ class CustomUserViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     
     def get_queryset(self):
-        if self.request.User.role =='Administrator':
+        if self.request.CustomUser.role =='Administrator':
             return CustomUser.objects.all()
         return CustomUser.objects.none()
 
