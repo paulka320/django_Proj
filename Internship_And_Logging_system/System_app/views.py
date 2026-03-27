@@ -47,19 +47,6 @@ class WeeklyLogViewSet(viewsets.ModelViewSet):
     queryset = WeeklyLog.objects.all()
     serializer_class = WeeklyLogSerializer
 
-class EvaluationCriteriaViewSet(viewsets.ModelViewSet):
-    queryset = EvaluationCriteria.objects.all()
-    serializer_class = EvaluationCriteriaSerializer
-
-
-class EvaluationViewSet(viewsets.ModelViewSet):
-    queryset = Evaluation.objects.all()
-    serializer_class = EvaluationSerializer
-    
-    
-    # -------------------------------------
-# 4. EVALUATION CRITERIA
-# -------------------------------------
 
 class EvaluationCriteriaViewSet(viewsets.ModelViewSet):
     queryset = EvaluationCriteria.objects.all()
@@ -71,3 +58,11 @@ class EvaluationCriteriaViewSet(viewsets.ModelViewSet):
         if self.request.user.role == 'admin':
             return EvaluationCriteria.objects.all()
         return EvaluationCriteria.objects.none()
+
+
+
+class EvaluationViewSet(viewsets.ModelViewSet):
+    queryset = Evaluation.objects.all()
+    serializer_class = EvaluationSerializer
+    
+
