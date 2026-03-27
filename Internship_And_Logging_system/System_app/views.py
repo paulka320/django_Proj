@@ -31,6 +31,10 @@ class InternshipPlacementViewSet(viewsets.ModelViewSet):
     serializer_class = InternshipPlacementSerializer
     permission_classes = [IsAuthenticated]
 
+    def get_queryset(self):
+        if CustomUser.role =="student":
+            return InternshipPlacement.objects.filter(students=CustomUser)
+
 
 class WeeklyLogViewSet(viewsets.ModelViewSet):
     queryset = WeeklyLog.objects.all()
