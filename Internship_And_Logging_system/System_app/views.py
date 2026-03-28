@@ -54,7 +54,7 @@ class EvaluationCriteriaViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        # Only admin can manage criteria
+        # Only the admin can manage the criteria
         if self.request.user.role == 'admin':
             return EvaluationCriteria.objects.all()
         return EvaluationCriteria.objects.none()
@@ -64,5 +64,22 @@ class EvaluationCriteriaViewSet(viewsets.ModelViewSet):
 class EvaluationViewSet(viewsets.ModelViewSet):
     queryset = Evaluation.objects.all()
     serializer_class = EvaluationSerializer
+    permission_classes = [IsAuthenticated]
+    def get_queryset(self):
+        user = self.request.user
+        if user.role =='student':
+            return Evaluation.objects.filter(student=user)
+        elif user.role =='supervisor':
+            return Evaluation.objects.all()
+        elif user.role =='admin':
+            return Evaluation.objects.all()
+    return Evaluation.objects.none()
+
+    def perform_create(self,serializer):
+        #only supervisor/admin can evaluate students
+        if self.request.user.role not in ['supervisor', 'admin']:
+            raise PermissionDenied("Only supervisor/admin can evaluate students")
+            serializer.save()
+    
     
 
