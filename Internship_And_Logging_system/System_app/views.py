@@ -54,7 +54,7 @@ class EvaluationCriteriaViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        # Only admin can manage criteria
+        # Only the admin can manage the criteria
         if self.request.user.role == 'admin':
             return EvaluationCriteria.objects.all()
         return EvaluationCriteria.objects.none()
@@ -64,5 +64,6 @@ class EvaluationCriteriaViewSet(viewsets.ModelViewSet):
 class EvaluationViewSet(viewsets.ModelViewSet):
     queryset = Evaluation.objects.all()
     serializer_class = EvaluationSerializer
+    
     
 
