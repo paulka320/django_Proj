@@ -57,6 +57,9 @@ class Evaluation(models.Model):
     def __str__(self):
         return f"{self.student.username} - {self.criteria.title()}"
   
+    class Meta:
+        ordering = ['-date_evaluated']
+    
 class InternshipPlacement(models.Model):
     student = models.OneToOneField(CustomUser,on_delete = models.CASCADE)
     company_name = models.CharField(max_length=80)
@@ -67,6 +70,9 @@ class InternshipPlacement(models.Model):
   
     def __str__(self):
         return self.company_name
+
+    class Meta:
+        ordering = ['start_date']
 
 class WeeklyLog(models.Model): 
     STATUS_CHOICES = (
@@ -87,6 +93,8 @@ class WeeklyLog(models.Model):
     def __str__(self):
         return f"Week {self.week_number} - {self.student.username}"
 
+    class Meta:
+        ordering = ['week_number']
 
 class EvaluationCriteria(models.Model):
   
