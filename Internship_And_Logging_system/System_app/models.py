@@ -69,7 +69,7 @@ class InternshipPlacement(models.Model):
     end_date = models.DateField()
   
     def __str__(self):
-        return self.company_name
+        return f"{self.student.username} - {self.company_name}"
 
     class Meta:
         ordering = ['start_date']
@@ -91,7 +91,7 @@ class WeeklyLog(models.Model):
     date_submitted = models.DateField()
     
     def __str__(self):
-        return f"Week {self.week_number} - {self.student.username}"
+        return f"Week {self.week_number} - {self.student.username} ({self.status})
 
     class Meta:
         ordering = ['week_number']
@@ -103,6 +103,6 @@ class EvaluationCriteria(models.Model):
     max_score = models.IntegerField()
   
     def __str__(self):
-        return self.title
+        return f"{self.title} (Max: {self.max_score})"
 
     
