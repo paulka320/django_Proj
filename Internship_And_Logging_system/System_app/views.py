@@ -74,6 +74,11 @@ class EvaluationViewSet(viewsets.ModelViewSet):
         elif user.role =='admin':
             return Evaluation.objects.all()
     return Evaluation.objects.none()
+
+    def perform_create(self,serializer):
+        #only supervisor/admin can evaluate
+        if self.request.user.role not in ['supervisor', 'admin']:
+            raise PermissionDenied("Only supervisor/admin can evaluate students")
     
     
 
