@@ -79,6 +79,7 @@ class EvaluationViewSet(viewsets.ModelViewSet):
         #only supervisor/admin can evaluate
         if self.request.user.role not in ['supervisor', 'admin']:
             raise PermissionDenied("Only supervisor/admin can evaluate students")
+            serializer.save()
     
     
 
