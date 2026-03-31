@@ -46,7 +46,26 @@ class InternshipPlacementViewSet(viewsets.ModelViewSet):
 class WeeklyLogViewSet(viewsets.ModelViewSet):
     queryset = WeeklyLog.objects.all()
     serializer_class = WeeklyLogSerializer
+    permission_classes = [IsAuthenticated]
 
+    def get_queryset(self):
+        user = self.request.user
+
+        if user.role == 'student':
+            return WeeklyLog.objects.filter(student=user)
+        
+        elif user.role == 'supervisor':
+            return WeeklyLog.objects.all()
+        
+        elif user.role == 'admin':
+            return WeeklyLog.objects.all()
+        
+        return WeeklyLog.objects.none()
+
+    def perform_create(self, serializer):
+        if self.request.user.role != 'student':
+            raise PermissionDenied("Only students can create weekly logs.")
+        serializer.save(student=self.request.user)
 
 class EvaluationCriteriaViewSet(viewsets.ModelViewSet):
     queryset = EvaluationCriteria.objects.all()
