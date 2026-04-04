@@ -26,7 +26,7 @@ class EvaluationSerializer(serializers.ModelSerializer):
     def validated_score(self,value):
         if value < 0 :
             raise serializers.validationError("Score can not be negative")
-        return value
+        return valu
     
     
 class InternshipPlacementSerializer(serializers.ModelSerializer):
