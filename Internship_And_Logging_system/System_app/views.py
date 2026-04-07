@@ -56,17 +56,15 @@ class WeeklyLogViewSet(viewsets.ModelViewSet):
             return WeeklyLog.objects.filter(student=user)
         
         #Supervisors and admins can see all logs
-        elif user.role == 'supervisor':
-            return WeeklyLog.objects.all()
-        
-        elif user.role == 'admin':
+        elif user.role in ['supervisor', 'administrator', 'academic_supervisor']:
             return WeeklyLog.objects.all()
         
         return WeeklyLog.objects.none()
-
+        
     def perform_create(self, serializer):
         if self.request.user.role != 'student':
             raise PermissionDenied("Only students can create weekly logs.")
+            
         serializer.save(student=self.request.user)
 
 class EvaluationCriteriaViewSet(viewsets.ModelViewSet):
@@ -88,19 +86,21 @@ class EvaluationViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     def get_queryset(self):
         user = self.request.user
+
         if user.role =='student':
             return Evaluation.objects.filter(student=user)
-        elif user.role =='supervisor':
+        
+        elif user.role in ['supervisor', 'administrator', 'academic_supervisor']:
             return Evaluation.objects.all()
-        elif user.role =='admin':
-            return Evaluation.objects.all()
+        
         return Evaluation.objects.none()
 
     def perform_create(self,serializer):
         #only supervisor/admin can evaluate students
-        if self.request.user.role not in ['supervisor', 'admin']:
-            raise PermissionDenied("Only supervisor/admin can evaluate students")
-            serializer.save()
+        if self.request.user.role not in ['supervisor', 'administrator', 'academic_supervisor']:
+            raise PermissionDenied("Only supervisor/administrator can evaluate students")
+        
+        serializer.save()
     
     
 
