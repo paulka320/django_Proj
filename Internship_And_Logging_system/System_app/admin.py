@@ -15,6 +15,8 @@ class InternshipPlacementAdmin(admin.ModelAdmin):
 @admin.register(WeeklyLog)
 class WeeklyLogAdmin(admin.ModelAdmin):
     list_display = ('student', 'week_number', 'status')
+    search_fields = ('student__username',)
+    list_filter = ('status',)
 
 
 @admin.register(Evaluation)
