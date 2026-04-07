@@ -94,7 +94,7 @@ class EvaluationViewSet(viewsets.ModelViewSet):
             return Evaluation.objects.all()
         elif user.role =='admin':
             return Evaluation.objects.all()
-    return Evaluation.objects.none()
+        return Evaluation.objects.none()
 
     def perform_create(self,serializer):
         #only supervisor/admin can evaluate students
