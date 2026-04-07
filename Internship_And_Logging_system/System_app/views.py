@@ -51,9 +51,11 @@ class WeeklyLogViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
 
+        #Students can only see their own logs
         if user.role == 'student':
             return WeeklyLog.objects.filter(student=user)
         
+        #Supervisors and admins can see all logs
         elif user.role == 'supervisor':
             return WeeklyLog.objects.all()
         
